@@ -1,0 +1,77 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/dist-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import mysql.connector
+import pandas as pd
+import orchest
+db = mysql.connector.connect(
+  host="mysql-115898-0.cloudclusters.net",
+  port="19877",
+  user="admin",
+  passwd="x2QMnNpr",
+  database  = "prosain{200411100086}"
+)
+
+def postgresql_to_dataframe(select_query, column_names):
+    """
+    Tranform a SELECT query into a pandas dataframe
+    """
+    cursor = db.cursor()
+    try:
+        cursor.execute(select_query)
+    except (Exception, psycopg2.DatabaseError) as error:
+        print("Error: %s" % error)
+        cursor.close()
+        return 1
+    
+    # Naturally we get a list of tupples
+    tupples = cursor.fetchall()
+    cursor.close()
+    
+    # We just need to turn it into a pandas dataframe
+    df = pd.DataFrame(tupples, columns=column_names)
+    return df
+
+# Connect to the database
+column_names = ["petallength"]
+df = postgresql_to_dataframe("select petallength from iris", column_names)
+print(df)
+------------------
+
+[0;31m[0m
+[0;31mModuleNotFoundError[0mTraceback (most recent call last)
+[0;32m<ipython-input-2-12cfd71d9d1b>[0m in [0;36m<cell line: 3>[0;34m()[0m
+[1;32m      1[0m [0;32mimport[0m [0mmysql[0m[0;34m.[0m[0mconnector[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0;32mimport[0m [0morchest[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m db = mysql.connector.connect(
+[1;32m      5[0m   [0mhost[0m[0;34m=[0m[0;34m"mysql-115898-0.cloudclusters.net"[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'orchest'
+
+[0;31m---------------------------------------------------------------------------[0;32m
+NOTE: If your import is failing due to a missing package, you can
+manually install dependencies using either !pip or !apt.
+
+To view examples of installing some common dependencies, click the
+"Open Examples" button below.
+[0;31m---------------------------------------------------------------------------[0m
+
+ModuleNotFoundError: No module named 'orchest'
+
