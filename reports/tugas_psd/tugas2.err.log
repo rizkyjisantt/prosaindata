@@ -56,14 +56,14 @@ print(df)
 
 [0;31m[0m
 [0;31mModuleNotFoundError[0mTraceback (most recent call last)
-[0;32m<ipython-input-2-12cfd71d9d1b>[0m in [0;36m<cell line: 3>[0;34m()[0m
-[1;32m      1[0m [0;32mimport[0m [0mmysql[0m[0;34m.[0m[0mconnector[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      2[0m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 3[0;31m [0;32mimport[0m [0morchest[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      4[0m db = mysql.connector.connect(
+[0;32m<ipython-input-2-12cfd71d9d1b>[0m in [0;36m<cell line: 1>[0;34m()[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mmysql[0m[0;34m.[0m[0mconnector[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mimport[0m [0morchest[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m db = mysql.connector.connect(
 [1;32m      5[0m   [0mhost[0m[0;34m=[0m[0;34m"mysql-115898-0.cloudclusters.net"[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'orchest'
+[0;31mModuleNotFoundError[0m: No module named 'mysql'
 
 [0;31m---------------------------------------------------------------------------[0;32m
 NOTE: If your import is failing due to a missing package, you can
@@ -73,5 +73,5 @@ To view examples of installing some common dependencies, click the
 "Open Examples" button below.
 [0;31m---------------------------------------------------------------------------[0m
 
-ModuleNotFoundError: No module named 'orchest'
+ModuleNotFoundError: No module named 'mysql'
 
