@@ -32,10 +32,13 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-from google.colab import drive
-drive.mount('/content/drive')
-path = '/content/drive/My Drive/Prosaindata/puan_PDIPerjuangan.csv'
-with open(path, 'w', encoding = 'utf-8-sig') as f:
-  df.to_csv(f)
+#Insialisai variable list untuk hasil crawling
+list_data = []
+
+#Membuat perulangan untuk melakukan crawling menggunakan snscraper dan di masukkan kedalam list
+for i,tweet in enumerate(sntwitter.TwitterSearchScraper('puanmaharani_ri').get_items()):
+    list_data.append([tweet.date, tweet.content, tweet.user. username, tweet.user.location])
+    if i>500:
+        break
 -------------------
 
